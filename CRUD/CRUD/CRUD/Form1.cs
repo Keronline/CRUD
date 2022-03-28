@@ -1,12 +1,4 @@
-using MongoDB.Driver;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System;
 using System.Data.SqlClient;
 
 
@@ -18,6 +10,22 @@ namespace CRUD
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            BindData();
+        }
+
+        SqlConnection conect = new SqlConnection("Data Source=DESKTOP-F8434JD\\SQLEXPRESS;Initial Catalog=BD_CRUD;Integrated Security=True");
+
+        void BindData()
+        {
+            SqlCommand cmd = new SqlCommand("select * from Table_ProductInfo", conect);
+            SqlDataAdapter sd = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dataGridView1.DataSource = dt;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -42,12 +50,33 @@ namespace CRUD
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection conect = new SqlConnection("Data Source=DESKTOP-F8434JD\\SQLEXPRESS;Initial Catalog=BD_CRUD;Integrated Security=True");
             conect.Open();
-            SqlCommand cmd = new SqlCommand("insert into Table_ProductInfo values ('"+int.Parse(textBox1.Text)+"', '" + textBox2.Text + "', '"+comboBox1.Text +"', getdate())", conect);
+            SqlCommand cmd = new SqlCommand("insert into Table_ProductInfo values ('" + int.Parse(textBox1.Text) + "', '" + textBox2.Text + "', '" + comboBox1.Text + "', getdate())", conect);
             cmd.ExecuteNonQuery();
             MessageBox.Show("Successfully Inserted!");
             conect.Close();
+            BindData();
+        }
+
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {/*
+            conect.Open();
+            SqlCommand cmd = new SqlCommand("update Table_ProductInfo set ItemName = '" + textBox2.Text + "', Color = '" + comboBox1.Text + "',UpdateDate = 'getdate()' where ProductID= '" + int.Parse(textBox1.Text) + "'", conect);
+            cmd.ExecuteNonQuery();
+            conect.Close();
+            MessageBox.Show("!Successfully  UpDate");*/
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

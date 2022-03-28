@@ -838,11 +838,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\CRUD\\CRUD\\CRUD\\CRUD.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Aqui\\CRUD\\CRUD\\CRUD\\CRUD.csproj",
       "projectName": "CRUD",
-      "projectPath": "C:\\Users\\User\\Desktop\\CRUD\\CRUD\\CRUD\\CRUD.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\Aqui\\CRUD\\CRUD\\CRUD\\CRUD.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\CRUD\\CRUD\\CRUD\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Aqui\\CRUD\\CRUD\\CRUD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
