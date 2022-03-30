@@ -17,12 +17,12 @@ namespace CRUD
             BindData();
         }
 
-        SqlConnection conect = new SqlConnection("Data Source=DESKTOP-F8434JD\\SQLEXPRESS;Initial Catalog=BD_CRUD;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-F8434JD\\SQLEXPRESS;Initial Catalog=BD_CRUD;Integrated Security=True");
 
         void BindData()
         {
-            SqlCommand cmd = new SqlCommand("select * from Table_ProductInfo", conect);
-            SqlDataAdapter sd = new SqlDataAdapter(cmd);
+            SqlCommand command = new SqlCommand("select * from Table_ProductInfo", con);
+            SqlDataAdapter sd = new SqlDataAdapter(command);
             DataTable dt = new DataTable();
             sd.Fill(dt);
             dataGridView1.DataSource = dt;
@@ -50,11 +50,11 @@ namespace CRUD
 
         private void button1_Click(object sender, EventArgs e)
         {
-            conect.Open();
-            SqlCommand cmd = new SqlCommand("insert into Table_ProductInfo values ('" + int.Parse(textBox1.Text) + "', '" + textBox2.Text + "', '" + comboBox1.Text + "', getdate())", conect);
-            cmd.ExecuteNonQuery();
+            con.Open();
+            SqlCommand command = new SqlCommand("insert into Table_ProductInfo values ('" + int.Parse(textBox1.Text) + "', '" + textBox2.Text + "', '" + comboBox1.Text + "', getdate())", con);
+            command.ExecuteNonQuery();
             MessageBox.Show("Successfully Inserted!");
-            conect.Close();
+            con.Close();
             BindData();
         }
 
@@ -62,21 +62,40 @@ namespace CRUD
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            if(textBox1.Text != "")
+            {
+                if(MessageBox.Show("Are you sure to delete?", "Delete Record", MessageBoxButtons.YesNo)==DialogResult.Yes)
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("Delete Table_ProductInfo where ProductID= '" + int.Parse(textBox1.Text) + "'", con);
+                    command.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Successfully Deleted");
+                    BindData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Put Product");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {/*
-            conect.Open();
-            SqlCommand cmd = new SqlCommand("update Table_ProductInfo set ItemName = '" + textBox2.Text + "', Color = '" + comboBox1.Text + "',UpdateDate = 'getdate()' where ProductID= '" + int.Parse(textBox1.Text) + "'", conect);
-            cmd.ExecuteNonQuery();
-            conect.Close();
+            con.Open();
+            SqlCommand command = new SqlCommand("update Table_ProductInfo set ItemName = '" + textBox2.Text + "', Color = '" + comboBox1.Text + "',UpdateDate = '" +DateTime.Parse(dateTimePicker1.Text)+ "' where ProductID= '" + int.Parse(textBox1.Text) + "'", con);
+            command.ExecuteNonQuery();
+            con.Close();
             MessageBox.Show("!Successfully  UpDate");*/
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            SqlCommand command = new SqlCommand("select * from Table_ProductInfo where ProductID='"+int.Parse(textBox1.Text)+ "'", con);
+            SqlDataAdapter sd = new SqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            dataGridView1.DataSource = dt;
         }
     }
 }
