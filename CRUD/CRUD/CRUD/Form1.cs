@@ -81,12 +81,12 @@ namespace CRUD
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {/*
+        {
             con.Open();
-            SqlCommand command = new SqlCommand("update Table_ProductInfo set ItemName = '" + textBox2.Text + "', Color = '" + comboBox1.Text + "',UpdateDate = '" +DateTime.Parse(dateTimePicker1.Text)+ "' where ProductID= '" + int.Parse(textBox1.Text) + "'", con);
+            SqlCommand command = new SqlCommand("update Table_ProductInfo set ItemName = '" + textBox2.Text + "', Color = '" + comboBox1.Text + "',InserDate = getdate() where ProductID= '" + int.Parse(textBox1.Text) + "'", con);
             command.ExecuteNonQuery();
             con.Close();
-            MessageBox.Show("!Successfully  UpDate");*/
+            MessageBox.Show("!Successfully  UpDate");
         }
 
         private void button3_Click(object sender, EventArgs e)
